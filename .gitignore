@@ -1,0 +1,8 @@
+vods/
+zig-out/
+.zig-cache/
+# gosh dang you twitch tv downloader
+COPYRIGHT.txt
+THIRD-PARTY-LICENSES.txt
+ttvdl.exe
+ttvdl
