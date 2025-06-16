@@ -136,6 +136,7 @@ fn SliceReader(comptime T: type) type {
             while (self.cursor < self.slice.len + size and self.slice[size] != delim) {
                 size += 1;
             }
+            size += 1;
             self.cursor += size;
             return self.slice[self.cursor - size .. size];
         }
@@ -186,7 +187,7 @@ pub fn loadInfoFromCat(alloc: std.mem.Allocator, cat: []const u8) !StreamInfo {
     defer file.close();
 
     const content = try file.readToEndAlloc(alloc, 20 * 1024);
-    defer alloc.free(content);
+    errdefer alloc.free(content);
 
     var stream = SliceReader(u8).init(content);
 
